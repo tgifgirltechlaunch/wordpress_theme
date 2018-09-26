@@ -24,7 +24,8 @@
 						</ul>
 					</div>
 					<ul class="footer-secondary-nav">
-						<li><p>A free portfolio theme for <a href="http://techlaunch.io"><em>Techlaunch Students</em></a></p></li>
+						<li><span style="color: #808080;"><?php echo get_option('admin_email'); ?></span>
+						<p>A free portfolio theme for <a href="http://techlaunch.io"><em>Techlaunch Students</em></a></p></li>
 					</ul>
 				</div>
 			</div>

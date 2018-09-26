@@ -44,37 +44,36 @@
 	<!-- END SECTION: Intro -->
 	
 	<!-- SECTION: Skills -->
-	<section class="skills has-padding alternate-bg" id="technical">
+	<section class="crew has-padding alternate-bg" id="technical">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<h4>Technical Skills</h4>
 				</div>
 			</div>
-			
-			<div class="row">
-				<?php while(have_posts()) { the_post(); ?>
-					
-					<?php if(get_the_category()[0]->name == 'Technical-Skills') { $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "size" );?>
-						<a href="<?= get_post_custom()['link'][0] ?>">
-							<div class="col-md-3 col-sm-6 col-xs-12" style="background-color: #ffffff; min-width: 225px; min-height: 225px; padding: 20px; margin: 20px;">
-								<article class="skills-member">
-									<figure>
-										<figcaption>
-											<h2><?php the_title() ?></h2>
-											<p><?php the_content() ?></p>
-											<div style="min-width: 225px; min-height: 225px;"><img src="<?= $thumbnail[0] ?>"></div>
-										</figcaption>
-									</figure>
-								</article>
-							</div>
-						</a>
-					<?php } ?>
-				<?php } ?>
+			<div class="row crew-wrap">
+				<?php
+					query_posts( array('category_name'=>'Technical-Skills') );
+					while ( have_posts() ) : the_post();
+				?>
+					<div class="col-md-3 col-sm-6 col-xs-12 skill-logo-wrap">
+						<span class="crew-img"><?php if ( has_post_thumbnail() ): // check for the featured image ?>
+							<a href="<?php the_permalink(' ') ?>" title="<?php the_title(); ?>" class="opacity"><?php the_post_thumbnail(); ?></a> <!--echo the featured image-->
+						</span>
+				<?php endif; ?>
+						<h2><?php the_title() ?></h2>
+						<p><?php the_content() ?></p>
+					</div>
+				<?php
+					endwhile;
+					wp_reset_query(); // resets main query
+				?>
 			</div>
-			<div>
+
+			<div class="row has-padding crewset">
 				<?php dynamic_sidebar('sidebar_1_widget') ?>
 			</div>
+			
 		</div>
 	</section>
 	<!-- END SECTION: skills -->
